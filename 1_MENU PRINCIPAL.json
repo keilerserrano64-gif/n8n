@@ -1,0 +1,1657 @@
+{
+  "name": "1:MENU PRINCIPAL",
+  "nodes": [
+    {
+      "parameters": {
+        "chatId": "={{$('Normalizar Entrada1').first().json.chat_id}}",
+        "text": "=No está en el rango. Responde con un número del 1 al 5.\n\n👋 ¡Hola {{$('Normalizar Entrada1').first().json.first_name}}! Soy *TutorBot*.\n\n¿Qué deseas hacer?\n1️⃣ Registrarme como estudiante\n2️⃣ Solicitar una tutoría\n3️⃣ Consultar mis tutorías\n4️⃣ Cancelar una tutoría\n5️⃣ Reportar una incidencia\n\nResponde con el número de la opción.",
+        "additionalFields": {
+          "appendAttribution": false,
+          "parse_mode": "Markdown"
+        }
+      },
+      "id": "8e6c3a41-eee1-4773-85f0-9077242e535a",
+      "name": "Telegram - Opción Fuera de Rango1",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        2800,
+        2496
+      ],
+      "webhookId": "60fc7615-72dd-4ea7-bdbc-21c995db1fb6",
+      "credentials": {
+        "telegramApi": {
+          "id": "fPrQsNV9HGryn40r",
+          "name": "Telegram account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "aaUt6xtoOJrE09z9",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/aaUt6xtoOJrE09z9",
+          "cachedResultName": "TutorBot - 2. Registro de Estudiante"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "chat_id": "={{ $('Normalizar Entrada1').first().json.chat_id }}",
+            "text_raw": "={{ $('Normalizar Entrada1').first().json.text_raw }}",
+            "first_name": "={{ $('Normalizar Entrada1').first().json.first_name }}",
+            "username": "={{ $('Normalizar Entrada1').first().json.username }}",
+            "estado": "={{ $('Sheets - Obtener Sesión1').first().json.estado }}",
+            "contexto": "={{ $('Sheets - Obtener Sesión1').first().json.contexto }}",
+            "registrado": "={{ $('Sheets - Obtener Sesión1').first().json.registrado }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "chat_id",
+              "displayName": "chat_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string"
+            },
+            {
+              "id": "text_raw",
+              "displayName": "text_raw",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string"
+            },
+            {
+              "id": "first_name",
+              "displayName": "first_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string"
+            },
+            {
+              "id": "username",
+              "displayName": "username",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string"
+            },
+            {
+              "id": "estado",
+              "displayName": "estado",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string"
+            },
+            {
+              "id": "contexto",
+              "displayName": "contexto",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string"
+            },
+            {
+              "id": "registrado",
+              "displayName": "registrado",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string"
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {
+          "waitForSubWorkflow": true
+        }
+      },
+      "id": "bd145b7d-667c-4999-b8e1-01b01b7a88c7",
+      "name": "Ejecutar Flujo 2 - Registro1",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.2,
+      "position": [
+        3024,
+        1552
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "xfmlObhUlbsw9MsS",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/xfmlObhUlbsw9MsS",
+          "cachedResultName": "TutorBot - 3. Solicitar Tutoría"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "chat_id": "={{ $('Normalizar Entrada1').first().json.chat_id }}",
+            "text_raw": "={{ $('Normalizar Entrada1').first().json.text_raw }}",
+            "first_name": "={{ $('Normalizar Entrada1').first().json.first_name }}",
+            "username": "={{ $('Normalizar Entrada1').first().json.username }}",
+            "estado": "={{ $('Sheets - Obtener Sesión1').first().json.estado }}",
+            "contexto": "={{ $('Sheets - Obtener Sesión1').first().json.contexto }}",
+            "registrado": "={{ $('Sheets - Obtener Sesión1').first().json.registrado }}"
+          },
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {
+          "waitForSubWorkflow": true
+        }
+      },
+      "id": "79550691-965c-4554-b24e-79140197f1ab",
+      "name": "Ejecutar Flujo 3 - Solicitar Tutoría1",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.2,
+      "position": [
+        3024,
+        1760
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "JbLjqMu1dcKxeUbp",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/JbLjqMu1dcKxeUbp",
+          "cachedResultName": "TutorBot - 4. Consultar Tutorías"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "chat_id": "={{ $('Normalizar Entrada1').first().json.chat_id }}",
+            "text_raw": "={{ $('Normalizar Entrada1').first().json.text_raw }}",
+            "first_name": "={{ $('Normalizar Entrada1').first().json.first_name }}",
+            "username": "={{ $('Normalizar Entrada1').first().json.username }}",
+            "estado": "={{ $('Sheets - Obtener Sesión1').first().json.estado }}",
+            "contexto": "={{ $('Sheets - Obtener Sesión1').first().json.contexto }}",
+            "registrado": "={{ $('Sheets - Obtener Sesión1').first().json.registrado }}"
+          },
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {
+          "waitForSubWorkflow": true
+        }
+      },
+      "id": "1a6db4b0-4081-401e-96a9-577ea6bb5807",
+      "name": "Ejecutar Flujo 4 - Consultar Tutorías1",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.2,
+      "position": [
+        3024,
+        1952
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "ecRAVHLFKP7E8JEL",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/ecRAVHLFKP7E8JEL",
+          "cachedResultName": "TutorBot - 5. Cancelar Tutoría"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "chat_id": "={{ $('Normalizar Entrada1').first().json.chat_id }}",
+            "text_raw": "={{ $('Normalizar Entrada1').first().json.text_raw }}",
+            "first_name": "={{ $('Normalizar Entrada1').first().json.first_name }}",
+            "username": "={{ $('Normalizar Entrada1').first().json.username }}",
+            "estado": "={{ $('Sheets - Obtener Sesión1').first().json.estado }}",
+            "contexto": "={{ $('Sheets - Obtener Sesión1').first().json.contexto }}",
+            "registrado": "={{ $('Sheets - Obtener Sesión1').first().json.registrado }}"
+          },
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {
+          "waitForSubWorkflow": true
+        }
+      },
+      "id": "fafa4246-e3b7-41fe-bb73-63ccb13cdcc7",
+      "name": "Ejecutar Flujo 5 - Cancelar Tutoría1",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.2,
+      "position": [
+        3024,
+        2160
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "7rWLSXEENN31mVye",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/7rWLSXEENN31mVye",
+          "cachedResultName": "TutorBot - 6. Reportar Incidencia"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "chat_id": "={{ $('Normalizar Entrada1').first().json.chat_id }}",
+            "text_raw": "={{ $('Normalizar Entrada1').first().json.text_raw }}",
+            "first_name": "={{ $('Normalizar Entrada1').first().json.first_name }}",
+            "username": "={{ $('Normalizar Entrada1').first().json.username }}",
+            "estado": "={{ $('Sheets - Obtener Sesión1').first().json.estado }}",
+            "contexto": "={{ $('Sheets - Obtener Sesión1').first().json.contexto }}",
+            "registrado": "={{ $('Sheets - Obtener Sesión1').first().json.registrado }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "chat_id",
+              "displayName": "chat_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string"
+            },
+            {
+              "id": "text_raw",
+              "displayName": "text_raw",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string"
+            },
+            {
+              "id": "first_name",
+              "displayName": "first_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string"
+            },
+            {
+              "id": "username",
+              "displayName": "username",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string"
+            },
+            {
+              "id": "estado",
+              "displayName": "estado",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string"
+            },
+            {
+              "id": "contexto",
+              "displayName": "contexto",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string"
+            },
+            {
+              "id": "registrado",
+              "displayName": "registrado",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string"
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {
+          "waitForSubWorkflow": true
+        }
+      },
+      "id": "07589a84-2b80-4574-909a-8887307beaea",
+      "name": "Ejecutar Flujo 6 - Reportar Incidencia1",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.2,
+      "position": [
+        3024,
+        2352
+      ]
+    },
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "id": "8232c5b5-3419-45a5-a494-4bcdc77084f8",
+      "name": "Telegram Trigger",
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -1472,
+        1872
+      ],
+      "webhookId": "3ef01994-38ab-4553-a65b-95ef60ea7175",
+      "credentials": {
+        "telegramApi": {
+          "id": "fPrQsNV9HGryn40r",
+          "name": "Telegram account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const chatId = String($json.message.chat.id);\nconst text = ($json.message.text || '').trim();\nreturn [{ json: { chat_id: chatId, text_raw: text, first_name: $json.message.chat.first_name || '', username: $json.message.chat.username || '' } }];"
+      },
+      "id": "85411d06-4240-4c0c-831c-c4d9c6beab4a",
+      "name": "Normalizar Entrada",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1280,
+        1872
+      ]
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1ygecuB-AFm5T9iG6Zghjd1ZEgsOSn319E1gFcsksZKs",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "SESSIONS",
+          "mode": "name"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "telegram_user",
+              "lookupValue": "={{$json.chat_id}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "61705adc-1a41-468d-b6ff-a5878775f5d9",
+      "name": "Sheets - Obtener Sesión",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        -1024,
+        1888
+      ],
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "CVRhhOUy0Vio85n7",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 1
+          },
+          "conditions": [
+            {
+              "leftValue": "={{$json.telegram_user.toString()}}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty"
+              },
+              "id": "5146c4a5-d372-4233-8c6d-b9bb26920f41"
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "52ea4a76-3bfc-4151-af34-bc7c0b802369",
+      "name": "IF ¿Sesión Existe?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        -816,
+        1920
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1ygecuB-AFm5T9iG6Zghjd1ZEgsOSn319E1gFcsksZKs",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "SESSIONS",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "telegram_user": "={{$('Normalizar Entrada').first().json.chat_id}}",
+            "estado": "MENU_PRINCIPAL",
+            "contexto": "{}",
+            "registrado": "NO",
+            "ultima_actualizacion": "={{$now}}"
+          },
+          "schema": [
+            {
+              "id": "telegram_user",
+              "displayName": "telegram_user",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "estado",
+              "displayName": "estado",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "contexto",
+              "displayName": "contexto",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "registrado",
+              "displayName": "registrado",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "ultima_actualizacion",
+              "displayName": "ultima_actualizacion",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false,
+          "matchingColumns": []
+        },
+        "options": {}
+      },
+      "id": "d61c55d7-3cb3-4a08-86af-46274ce5af99",
+      "name": "Sheets - Crear Sesión Nueva",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        -544,
+        2256
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "CVRhhOUy0Vio85n7",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{$('Normalizar Entrada').first().json.chat_id}}",
+        "text": "=👋 ¡Hola {{$('Normalizar Entrada').first().json.first_name}}! Soy *TutorBot*.\n\n¿Qué deseas hacer?\n1️⃣ Registrarme como estudiante\n2️⃣ Solicitar una tutoría\n3️⃣ Consultar mis tutorías\n4️⃣ Cancelar una tutoría\n5️⃣ Reportar una incidencia\n\nResponde con el número de la opción.",
+        "additionalFields": {
+          "appendAttribution": false,
+          "parse_mode": "Markdown"
+        }
+      },
+      "id": "cd7387ce-f4b3-4bcf-9c00-d622a80c1e6f",
+      "name": "Telegram - Enviar Menú Principal",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -224,
+        2256
+      ],
+      "webhookId": "87f09907-6d3b-48d7-a108-aa59c945331e",
+      "credentials": {
+        "telegramApi": {
+          "id": "fPrQsNV9HGryn40r",
+          "name": "Telegram account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "conditions": [
+                  {
+                    "leftValue": "={{$json.estado}}",
+                    "rightValue": "MENU_PRINCIPAL",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and",
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 1
+                }
+              }
+            },
+            {
+              "conditions": {
+                "conditions": [
+                  {
+                    "leftValue": "={{$json.estado}}",
+                    "rightValue": "REGISTRO_NOMBRE",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and",
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 1
+                }
+              }
+            },
+            {
+              "conditions": {
+                "conditions": [
+                  {
+                    "leftValue": "={{$json.estado}}",
+                    "rightValue": "ESPERANDO_MATERIA",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and",
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 1
+                }
+              }
+            },
+            {
+              "conditions": {
+                "conditions": [
+                  {
+                    "leftValue": "={{$json.estado}}",
+                    "rightValue": "ESPERANDO_FECHA",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and",
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 1
+                }
+              }
+            },
+            {
+              "conditions": {
+                "conditions": [
+                  {
+                    "leftValue": "={{$json.estado}}",
+                    "rightValue": "ESPERANDO_CONFIRMACION",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and",
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 1
+                }
+              }
+            },
+            {
+              "conditions": {
+                "conditions": [
+                  {
+                    "leftValue": "={{$json.estado}}",
+                    "rightValue": "ESPERANDO_ID_CANCELAR",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and",
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 1
+                }
+              }
+            },
+            {
+              "conditions": {
+                "conditions": [
+                  {
+                    "leftValue": "={{$json.estado}}",
+                    "rightValue": "ESPERANDO_INCIDENCIA",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and",
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 1
+                }
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "1f39ea0b-3c74-4b01-a8c7-f54b88cd09ca",
+      "name": "Switch - Estado de Sesión (Wizard)",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3,
+      "position": [
+        -416,
+        1584
+      ]
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "conditions": [
+                  {
+                    "leftValue": "={{$('Normalizar Entrada').first().json.text_raw}}",
+                    "rightValue": "1",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and",
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 1
+                }
+              }
+            },
+            {
+              "conditions": {
+                "conditions": [
+                  {
+                    "leftValue": "={{$('Normalizar Entrada').first().json.text_raw}}",
+                    "rightValue": "2",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and",
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 1
+                }
+              }
+            },
+            {
+              "conditions": {
+                "conditions": [
+                  {
+                    "leftValue": "={{$('Normalizar Entrada').first().json.text_raw}}",
+                    "rightValue": "3",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and",
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 1
+                }
+              }
+            },
+            {
+              "conditions": {
+                "conditions": [
+                  {
+                    "leftValue": "={{$('Normalizar Entrada').first().json.text_raw}}",
+                    "rightValue": "4",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and",
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 1
+                }
+              }
+            },
+            {
+              "conditions": {
+                "conditions": [
+                  {
+                    "leftValue": "={{$('Normalizar Entrada').first().json.text_raw}}",
+                    "rightValue": "5",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and",
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 1
+                }
+              }
+            },
+            {
+              "conditions": {
+                "conditions": [
+                  {
+                    "leftValue": "={{$('Normalizar Entrada').first().json.text_raw}}",
+                    "rightValue": ".*",
+                    "operator": {
+                      "type": "string",
+                      "operation": "regex"
+                    }
+                  }
+                ],
+                "combinator": "and",
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 1
+                }
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "a93516be-bb56-458b-a635-954760c7ae7e",
+      "name": "Switch - Opción Menú Principal",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3,
+      "position": [
+        176,
+        1728
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "={{$('Normalizar Entrada').first().json.chat_id}}",
+        "text": "=No está en el rango. Responde con un número del 1 al 5.\n\n👋 ¡Hola {{$('Normalizar Entrada').first().json.first_name}}! Soy *TutorBot*.\n\n¿Qué deseas hacer?\n1️⃣ Registrarme como estudiante\n2️⃣ Solicitar una tutoría\n3️⃣ Consultar mis tutorías\n4️⃣ Cancelar una tutoría\n5️⃣ Reportar una incidencia\n\nResponde con el número de la opción.",
+        "additionalFields": {
+          "appendAttribution": false,
+          "parse_mode": "Markdown"
+        }
+      },
+      "id": "0d55a148-9cec-4d69-9ecc-609b576ba773",
+      "name": "Telegram - Opción Fuera de Rango",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        352,
+        2144
+      ],
+      "webhookId": "60fc7615-72dd-4ea7-bdbc-21c995db1fb6",
+      "credentials": {
+        "telegramApi": {
+          "id": "fPrQsNV9HGryn40r",
+          "name": "Telegram account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "aaUt6xtoOJrE09z9",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/aaUt6xtoOJrE09z9",
+          "cachedResultName": "TutorBot - 2. Registro de Estudiante"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "chat_id": "={{ $('Normalizar Entrada').first().json.chat_id }}",
+            "text_raw": "={{ $('Normalizar Entrada').first().json.text_raw }}",
+            "first_name": "={{ $('Normalizar Entrada').first().json.first_name }}",
+            "username": "={{ $('Normalizar Entrada').first().json.username }}",
+            "estado": "={{ $('Sheets - Obtener Sesión').first().json.estado }}",
+            "contexto": "={{ $('Sheets - Obtener Sesión').first().json.contexto }}",
+            "registrado": "={{ $('Sheets - Obtener Sesión').first().json.registrado }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "chat_id",
+              "displayName": "chat_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string"
+            },
+            {
+              "id": "text_raw",
+              "displayName": "text_raw",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string"
+            },
+            {
+              "id": "first_name",
+              "displayName": "first_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string"
+            },
+            {
+              "id": "username",
+              "displayName": "username",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string"
+            },
+            {
+              "id": "estado",
+              "displayName": "estado",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string"
+            },
+            {
+              "id": "contexto",
+              "displayName": "contexto",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string"
+            },
+            {
+              "id": "registrado",
+              "displayName": "registrado",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string"
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {
+          "waitForSubWorkflow": true
+        }
+      },
+      "id": "584fb7b5-388e-4d55-99d1-c770a7541546",
+      "name": "Ejecutar Flujo 2 - Registro",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.2,
+      "position": [
+        576,
+        1200
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "xfmlObhUlbsw9MsS",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/xfmlObhUlbsw9MsS",
+          "cachedResultName": "TutorBot - 3. Solicitar Tutoría"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "chat_id": "={{ $('Normalizar Entrada').first().json.chat_id }}",
+            "text_raw": "={{ $('Normalizar Entrada').first().json.text_raw }}",
+            "first_name": "={{ $('Normalizar Entrada').first().json.first_name }}",
+            "username": "={{ $('Normalizar Entrada').first().json.username }}",
+            "estado": "={{ $('Sheets - Obtener Sesión').first().json.estado }}",
+            "contexto": "={{ $('Sheets - Obtener Sesión').first().json.contexto }}",
+            "registrado": "={{ $('Sheets - Obtener Sesión').first().json.registrado }}"
+          },
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {
+          "waitForSubWorkflow": true
+        }
+      },
+      "id": "50dd27b6-7f6e-4194-a1f0-6655e6c67664",
+      "name": "Ejecutar Flujo 3 - Solicitar Tutoría",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.2,
+      "position": [
+        576,
+        1408
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "JbLjqMu1dcKxeUbp",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/JbLjqMu1dcKxeUbp",
+          "cachedResultName": "TutorBot - 4. Consultar Tutorías"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "chat_id": "={{ $('Normalizar Entrada').first().json.chat_id }}",
+            "text_raw": "={{ $('Normalizar Entrada').first().json.text_raw }}",
+            "first_name": "={{ $('Normalizar Entrada').first().json.first_name }}",
+            "username": "={{ $('Normalizar Entrada').first().json.username }}",
+            "estado": "={{ $('Sheets - Obtener Sesión').first().json.estado }}",
+            "contexto": "={{ $('Sheets - Obtener Sesión').first().json.contexto }}",
+            "registrado": "={{ $('Sheets - Obtener Sesión').first().json.registrado }}"
+          },
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {
+          "waitForSubWorkflow": true
+        }
+      },
+      "id": "a720ab37-6062-4bf1-9a56-9ce971cea382",
+      "name": "Ejecutar Flujo 4 - Consultar Tutorías",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.2,
+      "position": [
+        576,
+        1600
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "ecRAVHLFKP7E8JEL",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/ecRAVHLFKP7E8JEL",
+          "cachedResultName": "TutorBot - 5. Cancelar Tutoría"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "chat_id": "={{ $('Normalizar Entrada').first().json.chat_id }}",
+            "text_raw": "={{ $('Normalizar Entrada').first().json.text_raw }}",
+            "first_name": "={{ $('Normalizar Entrada').first().json.first_name }}",
+            "username": "={{ $('Normalizar Entrada').first().json.username }}",
+            "estado": "={{ $('Sheets - Obtener Sesión').first().json.estado }}",
+            "contexto": "={{ $('Sheets - Obtener Sesión').first().json.contexto }}",
+            "registrado": "={{ $('Sheets - Obtener Sesión').first().json.registrado }}"
+          },
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {
+          "waitForSubWorkflow": true
+        }
+      },
+      "id": "7f6c3137-ba31-44cf-9f9b-af4552bf02e1",
+      "name": "Ejecutar Flujo 5 - Cancelar Tutoría",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.2,
+      "position": [
+        576,
+        1808
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "7rWLSXEENN31mVye",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/7rWLSXEENN31mVye",
+          "cachedResultName": "TutorBot - 6. Reportar Incidencia"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "chat_id": "={{ $('Normalizar Entrada').first().json.chat_id }}",
+            "text_raw": "={{ $('Normalizar Entrada').first().json.text_raw }}",
+            "first_name": "={{ $('Normalizar Entrada').first().json.first_name }}",
+            "username": "={{ $('Normalizar Entrada').first().json.username }}",
+            "estado": "={{ $('Sheets - Obtener Sesión').first().json.estado }}",
+            "contexto": "={{ $('Sheets - Obtener Sesión').first().json.contexto }}",
+            "registrado": "={{ $('Sheets - Obtener Sesión').first().json.registrado }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "chat_id",
+              "displayName": "chat_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string"
+            },
+            {
+              "id": "text_raw",
+              "displayName": "text_raw",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string"
+            },
+            {
+              "id": "first_name",
+              "displayName": "first_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string"
+            },
+            {
+              "id": "username",
+              "displayName": "username",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string"
+            },
+            {
+              "id": "estado",
+              "displayName": "estado",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string"
+            },
+            {
+              "id": "contexto",
+              "displayName": "contexto",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string"
+            },
+            {
+              "id": "registrado",
+              "displayName": "registrado",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string"
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {
+          "waitForSubWorkflow": true
+        }
+      },
+      "id": "8e735aff-884d-45ed-84e5-af0555a6e7f1",
+      "name": "Ejecutar Flujo 6 - Reportar Incidencia",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.2,
+      "position": [
+        576,
+        2000
+      ]
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours"
+            }
+          ]
+        }
+      },
+      "id": "f2b0fcff-92c4-4761-841a-d71cefe7ecab",
+      "name": "Schedule Trigger - Recordatorios (cada hora)",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -1456,
+        2656
+      ]
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1ygecuB-AFm5T9iG6Zghjd1ZEgsOSn319E1gFcsksZKs",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "TUTORIAS",
+          "mode": "name"
+        },
+        "options": {}
+      },
+      "id": "82f9e9de-b614-4dcf-af08-8a2fadb3054f",
+      "name": "Sheets - Obtener Tutorías Próximas",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        -1248,
+        2656
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "CVRhhOUy0Vio85n7",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1ygecuB-AFm5T9iG6Zghjd1ZEgsOSn319E1gFcsksZKs",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "TUTORES",
+          "mode": "name"
+        },
+        "options": {}
+      },
+      "id": "6f65c713-cfea-4f6e-a895-ff3977af33f9",
+      "name": "Sheets - Tutores para Recordatorio",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        -1040,
+        2656
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "CVRhhOUy0Vio85n7",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const ahora = new Date();\nconst tutores = $('Sheets - Tutores para Recordatorio').all().map(i => i.json);\nconst tutorias = $('Sheets - Obtener Tutorías Próximas').all().map(i => i.json);\nconst proximas = tutorias.filter(t => {\n  if (String(t.estado || '').toUpperCase() !== 'CONFIRMADA') return false;\n  const fecha = new Date(t.fecha_hora);\n  if (isNaN(fecha.getTime())) return false;\n  const diffMin = (fecha - ahora) / 60000;\n  return diffMin > 0 && diffMin <= 60;\n});\nreturn proximas.map(t => {\n  const tut = tutores.find(x => String(x.id_tutor) === String(t.id_tutor)) || {};\n  return { json: {\n    telegram_user: t.telegram_user,\n    email_tutor: tut.email_tutor || '',\n    materia: t.materia,\n    fecha_hora: t.fecha_hora,\n  } };\n});"
+      },
+      "id": "9b2472ee-d8b5-4d52-820c-676faa99562d",
+      "name": "Code - Filtrar Tutorías en Próxima Hora",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -832,
+        2656
+      ]
+    },
+    {
+      "parameters": {
+        "sendTo": "={{$json.email_tutor}}",
+        "subject": "Recordatorio de tutoría próxima - TutorBot",
+        "message": "=```html\n<!DOCTYPE html>\n<html lang=\"es\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Recordatorio de Tutoría</title>\n  <style>\n    body {\n      font-family: Arial, sans-serif;\n      background-color: #f4f4f9;\n      display: flex;\n      justify-content: center;\n      align-items: center;\n      height: 100vh;\n      margin: 0;\n    }\n    .card {\n      background-color: #ffffff;\n      border-left: 5px solid #ff4d4d;\n      padding: 20px;\n      border-radius: 8px;\n      box-shadow: 0 4px 8px rgba(0,0,0,0.1);\n      max-width: 400px;\n      width: 100%;\n    }\n    .card h2 {\n      margin-top: 0;\n      color: #333333;\n      font-size: 1.2rem;\n    }\n    .card p {\n      color: #555555;\n      line-height: 1.5;\n      margin-bottom: 0;\n    }\n    .highlight {\n      font-weight: bold;\n      color: #d9534f;\n    }\n  </style>\n</head>\n<body>\n\n  <div class=\"card\">\n    <h2>⏰ Recordatorio de Tutoría</h2>\n    <p>Tienes una tutoría de <strong>{{$json.materia}}</strong> programada para <strong>{{$json.fecha_hora}}</strong> (<span class=\"highlight\">en menos de 1 hora</span>).</p>\n  </div>\n\n</body>\n</html>\n\n```",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "id": "99df0fe3-f00f-4077-9ac6-f20dabac4652",
+      "name": "Gmail - Recordatorio al Tutor",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        -448,
+        2528
+      ],
+      "webhookId": "16441724-0c98-4256-8e05-1e8c0509a4d5",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "7wcxgcxbqXxXuWpK",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{$json.telegram_user}}",
+        "text": "=⏰ Recordatorio: tienes una tutoría de {{$json.materia}} en menos de 1 hora ({{$json.fecha_hora}}).",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "id": "0d9e526c-1369-4310-8e4d-aad83c72eaa0",
+      "name": "Telegram - Recordatorio al Estudiante",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -608,
+        2736
+      ],
+      "webhookId": "629175e5-80ae-490d-b4df-5885d373e791",
+      "credentials": {
+        "telegramApi": {
+          "id": "fPrQsNV9HGryn40r",
+          "name": "Telegram account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## TutorBot - 1. Principal\n\nEste flujo recibe los mensajes de Telegram, gestiona la sesión (SESSIONS) y enruta cada opción del menú a su flujo correspondiente mediante nodos **Execute Workflow**.\n\n⚠️ Después de importar los 6 flujos, abre cada nodo 'Ejecutar Flujo X' y vuelve a seleccionar el workflow de destino en el desplegable (los IDs cambian al importar).\n\nLa rama inferior (Schedule Trigger) envía recordatorios cada hora y es independiente del chat.",
+        "height": 260,
+        "width": 560,
+        "color": 4
+      },
+      "id": "36e8c383-4264-438c-999c-a32a284d51fd",
+      "name": "Nota",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1456,
+        1104
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 1
+          },
+          "conditions": [
+            {
+              "id": "condicion_registrado",
+              "leftValue": "={{ String($json.registrado || '').trim().toUpperCase() }}",
+              "rightValue": "SI",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "fd87675d-0012-423b-a980-74e40d23375e",
+      "name": "IF - ¿Ya Registrado?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        -640,
+        1664
+      ]
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "Normalizar Entrada",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Normalizar Entrada": {
+      "main": [
+        [
+          {
+            "node": "Sheets - Obtener Sesión",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Sheets - Obtener Sesión": {
+      "main": [
+        [
+          {
+            "node": "IF ¿Sesión Existe?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF ¿Sesión Existe?": {
+      "main": [
+        [
+          {
+            "node": "IF - ¿Ya Registrado?",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Sheets - Crear Sesión Nueva",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Sheets - Crear Sesión Nueva": {
+      "main": [
+        [
+          {
+            "node": "Telegram - Enviar Menú Principal",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch - Estado de Sesión (Wizard)": {
+      "main": [
+        [
+          {
+            "node": "Switch - Opción Menú Principal",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Ejecutar Flujo 2 - Registro",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Ejecutar Flujo 3 - Solicitar Tutoría",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Ejecutar Flujo 3 - Solicitar Tutoría",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Switch - Opción Menú Principal",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Ejecutar Flujo 5 - Cancelar Tutoría",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Ejecutar Flujo 6 - Reportar Incidencia",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch - Opción Menú Principal": {
+      "main": [
+        [
+          {
+            "node": "Ejecutar Flujo 2 - Registro",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Ejecutar Flujo 3 - Solicitar Tutoría",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Ejecutar Flujo 4 - Consultar Tutorías",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Ejecutar Flujo 5 - Cancelar Tutoría",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Ejecutar Flujo 6 - Reportar Incidencia",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Telegram - Opción Fuera de Rango",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger - Recordatorios (cada hora)": {
+      "main": [
+        [
+          {
+            "node": "Sheets - Obtener Tutorías Próximas",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Sheets - Obtener Tutorías Próximas": {
+      "main": [
+        [
+          {
+            "node": "Sheets - Tutores para Recordatorio",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Sheets - Tutores para Recordatorio": {
+      "main": [
+        [
+          {
+            "node": "Code - Filtrar Tutorías en Próxima Hora",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code - Filtrar Tutorías en Próxima Hora": {
+      "main": [
+        [
+          {
+            "node": "Gmail - Recordatorio al Tutor",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Telegram - Recordatorio al Estudiante",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF - ¿Ya Registrado?": {
+      "main": [
+        [
+          {
+            "node": "Switch - Estado de Sesión (Wizard)",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Ejecutar Flujo 2 - Registro",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "9af19bd4-2097-4728-af03-2ad0cbb123ab",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "1f5616d107b45de623c8ae1cfd33468bf98bcfdd66dd0dc84b8cf04c59b17156"
+  },
+  "nodeGroups": [],
+  "id": "bqMu39nLPa5ZmCBN",
+  "tags": []
+}

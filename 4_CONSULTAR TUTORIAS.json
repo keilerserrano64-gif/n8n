@@ -1,0 +1,186 @@
+{
+  "name": "4:CONSULTAR TUTORIAS",
+  "nodes": [
+    {
+      "parameters": {
+        "workflowInputs": {
+          "values": [
+            {
+              "name": "chat_id"
+            },
+            {
+              "name": "text_raw"
+            },
+            {
+              "name": "first_name"
+            },
+            {
+              "name": "username"
+            },
+            {
+              "name": "estado"
+            },
+            {
+              "name": "contexto"
+            },
+            {
+              "name": "registrado"
+            }
+          ]
+        }
+      },
+      "id": "ab40b566-3166-4009-9f44-8518a27aaecf",
+      "name": "Entrada",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -128,
+        448
+      ]
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1ygecuB-AFm5T9iG6Zghjd1ZEgsOSn319E1gFcsksZKs",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "TUTORIAS",
+          "mode": "name"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "telegram_user",
+              "lookupValue": "={{$('Entrada').first().json.chat_id}}"
+            },
+            {
+              "lookupColumn": "estado",
+              "lookupValue": "CONFIRMADA"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "0b03f04c-56bd-43eb-b26d-fbac7971687a",
+      "name": "Sheets - Consultar Tutorías Activas",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        96,
+        448
+      ],
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "CVRhhOUy0Vio85n7",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const rows = items.filter(i => i.json && Object.keys(i.json).length > 0 && i.json.id_tutoria);\nconst chatId = $('Entrada').first().json.chat_id;\nif (rows.length === 0) {\n  return [{ json: { chat_id: chatId, mensaje: 'No tienes tutorías activas registradas.' } }];\n}\nconst lista = rows.map(i => `🆔 ${i.json.id_tutoria} | 📘 ${i.json.materia} | 🗓️ ${i.json.fecha_hora}`).join('\\n');\nreturn [{ json: { chat_id: chatId, mensaje: `Tus tutorías activas:\\n${lista}` } }];"
+      },
+      "id": "4bf28068-be6f-41eb-9b51-576b3497a633",
+      "name": "Code - Formatear Lista Tutorías",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        320,
+        448
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "={{$json.chat_id}}",
+        "text": "={{$json.mensaje}}",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "id": "ce884144-d3fd-4ded-aa26-bbad40c1116a",
+      "name": "Telegram - Enviar Lista Tutorías",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        544,
+        448
+      ],
+      "webhookId": "c28bd10e-6b54-48fa-8c1b-4c6c32684add",
+      "credentials": {
+        "telegramApi": {
+          "id": "fPrQsNV9HGryn40r",
+          "name": "Telegram account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## TutorBot - 4. Consultar Tutorías\n\nFlujo de un solo paso: se invoca desde el Flujo 1 (opción 3). Busca las tutorías CONFIRMADAS del estudiante y las envía por Telegram. No modifica el estado de la sesión (se queda en MENU_PRINCIPAL).",
+        "height": 180,
+        "width": 520,
+        "color": 4
+      },
+      "id": "56350a28-5816-41b4-b5e7-70d0cf7ebeeb",
+      "name": "Nota",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -128,
+        160
+      ]
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Entrada": {
+      "main": [
+        [
+          {
+            "node": "Sheets - Consultar Tutorías Activas",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Sheets - Consultar Tutorías Activas": {
+      "main": [
+        [
+          {
+            "node": "Code - Formatear Lista Tutorías",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code - Formatear Lista Tutorías": {
+      "main": [
+        [
+          {
+            "node": "Telegram - Enviar Lista Tutorías",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "d9fe2a1c-49be-4b45-821d-cf39e49b8c1b",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "1f5616d107b45de623c8ae1cfd33468bf98bcfdd66dd0dc84b8cf04c59b17156"
+  },
+  "nodeGroups": [],
+  "id": "VRL1Bu7iRQTFRUwI",
+  "tags": []
+}
