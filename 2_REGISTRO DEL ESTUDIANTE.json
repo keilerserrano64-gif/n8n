@@ -1,0 +1,625 @@
+{
+  "name": "2:REGISTRO DEL ESTUDIANTE",
+  "nodes": [
+    {
+      "parameters": {
+        "workflowInputs": {
+          "values": [
+            {
+              "name": "chat_id"
+            },
+            {
+              "name": "text_raw"
+            },
+            {
+              "name": "first_name"
+            },
+            {
+              "name": "username"
+            },
+            {
+              "name": "estado"
+            },
+            {
+              "name": "contexto"
+            },
+            {
+              "name": "registrado"
+            }
+          ]
+        }
+      },
+      "id": "23345a69-62b2-46d6-a33e-1bd0f6e83a6b",
+      "name": "Entrada",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -48,
+        784
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1ygecuB-AFm5T9iG6Zghjd1ZEgsOSn319E1gFcsksZKs",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "ESTUDIANTES",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "id_estudiante": "={{$('Entrada').first().json.chat_id}}",
+            "nombre": "={{$('Entrada').first().json.text_raw}}",
+            "telegram_user": "={{$('Entrada').first().json.chat_id}}",
+            "fecha_registro": "={{$now}}"
+          },
+          "schema": [
+            {
+              "id": "id_estudiante",
+              "displayName": "id_estudiante",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "nombre",
+              "displayName": "nombre",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "telegram_user",
+              "displayName": "telegram_user",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "fecha_registro",
+              "displayName": "fecha_registro",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false,
+          "matchingColumns": []
+        },
+        "options": {}
+      },
+      "id": "52a2529d-692d-4fbc-b032-02f52de6d414",
+      "name": "Sheets - Insertar Nuevo Estudiante",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        432,
+        624
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "CVRhhOUy0Vio85n7",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1ygecuB-AFm5T9iG6Zghjd1ZEgsOSn319E1gFcsksZKs",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "SESSIONS",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "telegram_user": "={{$('Entrada').first().json.chat_id}}",
+            "estado": "MENU_PRINCIPAL",
+            "registrado": "SI",
+            "ultima_actualizacion": "={{$now}}"
+          },
+          "schema": [
+            {
+              "id": "telegram_user",
+              "displayName": "telegram_user",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "estado",
+              "displayName": "estado",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "registrado",
+              "displayName": "registrado",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "ultima_actualizacion",
+              "displayName": "ultima_actualizacion",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false,
+          "matchingColumns": [
+            "telegram_user"
+          ]
+        },
+        "options": {}
+      },
+      "id": "07ba1fc4-e79d-4ddb-9147-fcbc20529b5e",
+      "name": "Sheets - Reset Estado tras Registro",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        656,
+        624
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "CVRhhOUy0Vio85n7",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Entrada').first().json.chat_id }}",
+        "text": "=✅ ¡Registro completado, {{$('Entrada').first().json.text_raw}}!\n\nEscribe cualquier mensaje para volver al menú principal.",
+        "additionalFields": {
+          "appendAttribution": false,
+          "parse_mode": "Markdown"
+        }
+      },
+      "id": "f139d41c-f9aa-4518-a821-3ac31b4a944b",
+      "name": "Telegram - Confirmar Registro",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        912,
+        608
+      ],
+      "webhookId": "4d351de6-a8e7-43bb-b103-d7e8b3ea45b3",
+      "credentials": {
+        "telegramApi": {
+          "id": "fPrQsNV9HGryn40r",
+          "name": "Telegram account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 1
+          },
+          "conditions": [
+            {
+              "leftValue": "={{$('Entrada').first().json.registrado}}",
+              "rightValue": "SI",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              },
+              "id": "3753b716-a103-4bb4-8d6f-51131005f3af"
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "04ea5dc2-8d02-40fc-bc8a-6f7c24f07f60",
+      "name": "IF ¿Ya Está Registrado?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        432,
+        944
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Entrada').first().json.chat_id }}",
+        "text": "=ℹ️ Ya estás registrado, {{$('Entrada').first().json.first_name}}. Escribe cualquier mensaje para volver al menú principal.",
+        "additionalFields": {
+          "appendAttribution": false,
+          "parse_mode": "Markdown"
+        }
+      },
+      "id": "5b8ae025-a95d-4a0c-ade7-190137559e0f",
+      "name": "Telegram - Ya Estás Registrado",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        656,
+        864
+      ],
+      "webhookId": "d37c5b85-4afa-41ab-ab9c-8c044f60d4cd",
+      "credentials": {
+        "telegramApi": {
+          "id": "fPrQsNV9HGryn40r",
+          "name": "Telegram account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1ygecuB-AFm5T9iG6Zghjd1ZEgsOSn319E1gFcsksZKs",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "SESSIONS",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "telegram_user": "={{$('Entrada').first().json.chat_id}}",
+            "estado": "MENU_PRINCIPAL",
+            "ultima_actualizacion": "={{$now}}"
+          },
+          "schema": [
+            {
+              "id": "telegram_user",
+              "displayName": "telegram_user",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "estado",
+              "displayName": "estado",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "ultima_actualizacion",
+              "displayName": "ultima_actualizacion",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false,
+          "matchingColumns": [
+            "telegram_user"
+          ]
+        },
+        "options": {}
+      },
+      "id": "e0bf8cb9-e335-4731-9ff9-481ec0ae5f5c",
+      "name": "Sheets - Reset Estado a Menú (Ya Registrado)",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        880,
+        864
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "CVRhhOUy0Vio85n7",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1ygecuB-AFm5T9iG6Zghjd1ZEgsOSn319E1gFcsksZKs",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "SESSIONS",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "telegram_user": "={{$('Entrada').first().json.chat_id}}",
+            "estado": "REGISTRO_NOMBRE",
+            "ultima_actualizacion": "={{$now}}"
+          },
+          "schema": [
+            {
+              "id": "telegram_user",
+              "displayName": "telegram_user",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "estado",
+              "displayName": "estado",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "ultima_actualizacion",
+              "displayName": "ultima_actualizacion",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false,
+          "matchingColumns": [
+            "telegram_user"
+          ]
+        },
+        "options": {}
+      },
+      "id": "a613d737-92eb-45cf-a66b-1d8585f6e4c1",
+      "name": "Sheets - Set Estado REGISTRO_NOMBRE",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        656,
+        1024
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "CVRhhOUy0Vio85n7",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Entrada').first().json.chat_id }}",
+        "text": "📝 ¿Cuál es tu nombre completo? Escríbelo para completar tu registro.",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "id": "30c69505-e447-4de1-aed7-79df2483bbca",
+      "name": "Telegram - Solicitar Nombre",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        880,
+        1024
+      ],
+      "webhookId": "00310fa6-0db4-4ce4-b994-043224164d9f",
+      "credentials": {
+        "telegramApi": {
+          "id": "fPrQsNV9HGryn40r",
+          "name": "Telegram account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## TutorBot - 2. Registro de Estudiante\n\nSe invoca desde el Flujo 1 (opción 1, o continuación en estado REGISTRO_NOMBRE).\n\n1. Si el usuario ya estaba escribiendo su nombre (estado=REGISTRO_NOMBRE) -> lo guarda en ESTUDIANTES.\n2. Si viene recién del menú -> revisa si `registrado=SI`. Si ya está registrado, avisa y vuelve al menú. Si no, pide el nombre.",
+        "height": 220,
+        "width": 528,
+        "color": 4
+      },
+      "id": "35374d68-face-45f0-aa2f-93709db4887c",
+      "name": "Nota",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 1
+          },
+          "conditions": [
+            {
+              "leftValue": "={{$('Entrada').first().json.estado}}",
+              "rightValue": "REGISTRO_NOMBRE",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              },
+              "id": "ba158f0f-c4a8-47e5-a61c-f5f29dab0534"
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "bf90d4bb-99bf-4f37-9006-c51d882a5b19",
+      "name": "IF ¿Continúa Escribiendo Nombre?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        176,
+        784
+      ]
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Entrada": {
+      "main": [
+        [
+          {
+            "node": "IF ¿Continúa Escribiendo Nombre?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Sheets - Insertar Nuevo Estudiante": {
+      "main": [
+        [
+          {
+            "node": "Sheets - Reset Estado tras Registro",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Sheets - Reset Estado tras Registro": {
+      "main": [
+        [
+          {
+            "node": "Telegram - Confirmar Registro",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF ¿Ya Está Registrado?": {
+      "main": [
+        [
+          {
+            "node": "Telegram - Ya Estás Registrado",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Sheets - Set Estado REGISTRO_NOMBRE",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram - Ya Estás Registrado": {
+      "main": [
+        [
+          {
+            "node": "Sheets - Reset Estado a Menú (Ya Registrado)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Sheets - Set Estado REGISTRO_NOMBRE": {
+      "main": [
+        [
+          {
+            "node": "Telegram - Solicitar Nombre",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF ¿Continúa Escribiendo Nombre?": {
+      "main": [
+        [
+          {
+            "node": "Sheets - Insertar Nuevo Estudiante",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "IF ¿Ya Está Registrado?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "b6fb67d2-363a-4b71-8fc8-11d3fbbfedbe",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "1f5616d107b45de623c8ae1cfd33468bf98bcfdd66dd0dc84b8cf04c59b17156"
+  },
+  "nodeGroups": [],
+  "id": "HvDd5QfTpOvbz3em",
+  "tags": []
+}
